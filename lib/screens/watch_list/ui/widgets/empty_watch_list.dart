@@ -13,9 +13,7 @@ class EmptyWatchList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 62.0.w,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: 48.0.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

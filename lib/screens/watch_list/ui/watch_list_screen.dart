@@ -29,9 +29,7 @@ class _WatchListScreenState extends State<WatchListScreen> {
       appBar: watchListAppBar(),
       body: BlocBuilder<WatchListCubit, WatchListState>(
         builder: (context, state) {
-          if (state is WatchListInitial) {
-            return Container();
-          } else if (state is WatchListLoading) {
+          if (state is WatchListLoading) {
             return const Center(
               child: CircularProgressIndicator(color: AppColor.blue),
             );

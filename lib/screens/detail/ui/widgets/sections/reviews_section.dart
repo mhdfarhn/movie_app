@@ -15,7 +15,7 @@ class ReviewsSection extends StatelessWidget {
         if (state is MovieReviewLoaded) {
           return Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: 28.0.w,
+              horizontal: 24.0.w,
               vertical: 24.0.h,
             ),
             child: Column(

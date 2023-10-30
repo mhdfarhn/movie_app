@@ -23,9 +23,7 @@ class CoverArtCard extends StatelessWidget {
           imageUrl: 'https://image.tmdb.org/t/p/original${movie.posterPath}',
           fit: BoxFit.cover,
           placeholder: (_, __) => const Center(
-            child: CircularProgressIndicator(
-              color: AppColor.blue,
-            ),
+            child: CircularProgressIndicator(color: AppColor.blue),
           ),
           errorWidget: (_, __, ___) => const Icon(Icons.error_outline_rounded),
         ),

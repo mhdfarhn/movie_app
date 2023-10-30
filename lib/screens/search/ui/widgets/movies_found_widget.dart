@@ -22,11 +22,11 @@ class MoviesFoundWidget extends StatelessWidget {
         (index) {
           return Padding(
             padding: EdgeInsets.only(
-              left: 28.0.w,
-              right: 28.0.w,
+              left: 24.0.w,
+              right: 24.0.w,
               bottom: 24.0.h,
             ),
-            child: InkWell(
+            child: GestureDetector(
               onTap: () {
                 context.goNamed(
                   AppRouter.detail,

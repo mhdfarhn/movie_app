@@ -33,7 +33,7 @@ class NowPlayingMovieContent extends StatelessWidget {
             children: List.generate(
               movies.length,
               (index) {
-                return InkWell(
+                return GestureDetector(
                   onTap: () {
                     context.goNamed(
                       AppRouter.detail,
@@ -46,9 +46,7 @@ class NowPlayingMovieContent extends StatelessWidget {
                       },
                     );
                   },
-                  child: CoverArtCard(
-                    movie: movies[index],
-                  ),
+                  child: CoverArtCard(movie: movies[index]),
                 );
               },
             ),

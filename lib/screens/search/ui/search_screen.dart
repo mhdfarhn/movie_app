@@ -41,29 +41,19 @@ class _SearchScreenState extends State<SearchScreen> {
       appBar: searchAppBar(context),
       body: Column(
         children: [
-          SizedBox(height: 16.0.h),
+          // SizedBox(height: 16.0.h),
           Padding(
             padding: EdgeInsets.only(
-              left: 28.0.w,
-              top: 16.0.h,
-              right: 28.0.w,
+              left: 24.0.w,
+              right: 24.0.w,
               bottom: 24.0.h,
             ),
-            child: SearchWidget(
-              controller: _searchController,
-              onTap: () {
-                context
-                    .read<SearchMovieBloc>()
-                    .add(SearchMoviesByTitle(_searchController.text.trim()));
-              },
-            ),
+            child: SearchWidget(controller: _searchController),
           ),
           Expanded(
             child: BlocBuilder<SearchMovieBloc, SearchMovieState>(
               builder: (context, state) {
-                if (state is SearchMovieInitial) {
-                  return Container();
-                } else if (state is SearchMovieLoading) {
+                if (state is SearchMovieLoading) {
                   return const Center(
                     child: CircularProgressIndicator(color: AppColor.blue),
                   );

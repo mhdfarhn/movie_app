@@ -16,7 +16,7 @@ class AboutMovieSection extends StatelessWidget {
         if (state is MovieDetailLoaded) {
           return Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: 28.0.w,
+              horizontal: 24.0.w,
               vertical: 24.0.h,
             ),
             child: Text(

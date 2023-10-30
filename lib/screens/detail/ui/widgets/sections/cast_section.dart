@@ -18,7 +18,7 @@ class CastSection extends StatelessWidget {
           return Padding(
             padding: EdgeInsets.symmetric(
               horizontal: 24.0.h,
-              vertical: 28.0.w,
+              vertical: 24.0.w,
             ),
             child: StaggeredGrid.count(
               crossAxisCount: 2,

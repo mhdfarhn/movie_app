@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:movie_app/screens/home/blocs/now_playing_movie/now_playing_movie_cubit.dart';
 import 'package:movie_app/screens/home/blocs/popular_movie/popular_movie_cubit.dart';
 import 'package:movie_app/screens/home/blocs/top_rated_movie/top_rated_movie_cubit.dart';
 import 'package:movie_app/screens/home/blocs/upcoming_movie/upcoming_movie_cubit.dart';
 
-import '../../../core/app_router.dart';
 import '../../../core/widgets/app_widgets.dart';
-import '../../search/blocs/search_movie/search_movie_bloc.dart';
 import '../blocs/top_five_movie/top_five_movie_cubit.dart';
 import 'widgets/home_widgets.dart';
 
@@ -68,25 +65,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.0.w),
-              child: SearchWidget(
-                controller: _searchController,
-                onTap: () {
-                  context
-                      .read<SearchMovieBloc>()
-                      .add(SearchMoviesByTitle(_searchController.text.trim()));
-                  context.goNamed(
-                    AppRouter.search,
-                    extra: _searchController.text.trim(),
-                  );
-                },
-              ),
+              child: SearchWidget(controller: _searchController),
             ),
             SizedBox(height: 24.0.h),
             const TopFiveMovieContent(),
             SizedBox(height: 44.0.h),
             TabBarWidget(
               tabs: _tabs,
-              tabController: _tabController,
+              controller: _tabController,
             ),
             Padding(
               padding: EdgeInsets.symmetric(

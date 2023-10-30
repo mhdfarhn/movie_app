@@ -17,6 +17,19 @@ class TMDBApiService {
     'accept': 'application/json',
   };
 
+  Future<void> addRating(String movieId, double rating) async {
+    _headers['Content-Type'] = 'application/json;charset=utf-8';
+    try {
+      await http.post(
+        Uri.parse('$_baseUrl/movie/$movieId/rating'),
+        headers: _headers,
+        body: jsonEncode({'value': rating}),
+      );
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
   Future<TokenModel> createRequestToken() async {
     try {
       final http.Response response = await http.get(

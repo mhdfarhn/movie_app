@@ -50,9 +50,16 @@ class TopFiveMovieContent extends StatelessWidget {
                     },
                   ),
                 ),
-              )..insert(
+              )
+                ..insert(
                   0,
                   SizedBox(width: 24.0.w),
+                )
+                ..insert(
+                  movies.length + 1,
+                  SizedBox(
+                    width: 4.0.w,
+                  ),
                 ),
             ),
           );

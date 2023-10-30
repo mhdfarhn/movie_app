@@ -38,8 +38,15 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
           destinations: const [
             NavigationDestination(
               label: 'Home',
-              icon: Icon(Icons.home_filled, color: AppColor.gray),
-              selectedIcon: Icon(Icons.home_filled, color: AppColor.blue),
+              icon: Icon(
+                Icons.home_outlined,
+                color: AppColor.gray,
+              ),
+              selectedIcon: Icon(
+                Icons.home_rounded,
+                color: AppColor.blue,
+              ),
+              tooltip: 'Home',
             ),
             NavigationDestination(
               label: 'Search',
@@ -51,6 +58,7 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
                 Icons.search_rounded,
                 color: AppColor.blue,
               ),
+              tooltip: 'Search',
             ),
             NavigationDestination(
               label: 'Watch List',
@@ -59,9 +67,10 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
                 color: AppColor.gray,
               ),
               selectedIcon: Icon(
-                Icons.bookmark_outline_rounded,
+                Icons.bookmark_rounded,
                 color: AppColor.blue,
               ),
+              tooltip: 'Watch List',
             ),
           ],
           onDestinationSelected: _goBranch,

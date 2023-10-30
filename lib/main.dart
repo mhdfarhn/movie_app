@@ -6,7 +6,9 @@ import 'package:movie_app/core/app_bloc_observer.dart';
 import 'package:movie_app/core/data/services/databases/watch_list_box.dart';
 import 'package:movie_app/screens/detail/blocs/movie_cast/movie_cast_bloc.dart';
 import 'package:movie_app/screens/detail/blocs/movie_detail/movie_detail_bloc.dart';
+import 'package:movie_app/screens/detail/blocs/movie_rating/movie_rating_cubit.dart';
 import 'package:movie_app/screens/detail/blocs/movie_review/movie_review_bloc.dart';
+import 'package:movie_app/screens/detail/blocs/rate_movie/rate_movie_cubit.dart';
 import 'package:movie_app/screens/home/blocs/now_playing_movie/now_playing_movie_cubit.dart';
 import 'package:movie_app/screens/home/blocs/popular_movie/popular_movie_cubit.dart';
 import 'package:movie_app/screens/home/blocs/top_five_movie/top_five_movie_cubit.dart';
@@ -19,11 +21,13 @@ import 'core/app_color.dart';
 import 'core/app_router.dart';
 import 'core/data/models/movie_model.dart';
 import 'core/data/services/apis/tmdb_api_service.dart';
+import 'core/data/services/databases/rated_movies_box.dart';
 
 void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(MovieModelAdapter());
   watchListBox = await Hive.openBox<MovieModel>('watchListBox');
+  ratedMoviesBox = await Hive.openBox<double>('ratedMoviesBox');
   Bloc.observer = const AppBlocObserver();
   runApp(const App());
 }
@@ -39,6 +43,9 @@ class App extends StatelessWidget {
         return MultiRepositoryProvider(
           providers: [
             RepositoryProvider(
+              create: (context) => RatedMoviesBox(),
+            ),
+            RepositoryProvider(
               create: (context) => TMDBApiService(),
             ),
             RepositoryProvider(
@@ -53,6 +60,7 @@ class App extends StatelessWidget {
               BlocProvider(
                   create: (context) =>
                       MovieDetailBloc(context.read<TMDBApiService>())),
+              BlocProvider(create: (context) => MovieRatingCubit()),
               BlocProvider(
                   create: (context) =>
                       MovieReviewBloc(context.read<TMDBApiService>())),
@@ -62,6 +70,11 @@ class App extends StatelessWidget {
               BlocProvider(
                   create: (context) =>
                       PopularMovieCubit(context.read<TMDBApiService>())),
+              BlocProvider(
+                  create: (context) => RateMovieCubit(
+                        context.read<TMDBApiService>(),
+                        context.read<RatedMoviesBox>(),
+                      )),
               BlocProvider(
                   create: (context) =>
                       SearchMovieBloc(context.read<TMDBApiService>())),

@@ -17,10 +17,8 @@ AppBar detailAppBar({
     backgroundColor: AppColor.background,
     centerTitle: true,
     leading: Padding(
-      padding: EdgeInsets.only(
-        left: 24.0.w,
-      ),
-      child: InkWell(
+      padding: EdgeInsets.only(left: 24.0.w),
+      child: GestureDetector(
         onTap: () {
           context.goNamed(path);
         },
@@ -37,18 +35,15 @@ AppBar detailAppBar({
     ),
     actions: [
       Padding(
-        padding: EdgeInsets.only(
-          right: 24.0.w,
-        ),
+        padding: EdgeInsets.only(right: 24.0.w),
         child: BlocBuilder<WatchListCubit, WatchListState>(
           builder: (context, state) {
             if (state is WatchListLoading) {
               return const CircularProgressIndicator(color: AppColor.blue);
             } else if (state is WatchListNotAdded) {
-              return InkWell(
-                onTap: () {
-                  context.read<WatchListCubit>().addToWatchList(movie);
-                },
+              return GestureDetector(
+                onTap: () =>
+                    context.read<WatchListCubit>().addToWatchList(movie),
                 child: Icon(
                   Icons.bookmark_outline_rounded,
                   color: AppColor.white,
@@ -56,10 +51,10 @@ AppBar detailAppBar({
                 ),
               );
             } else if (state is WatchListAdded) {
-              return InkWell(
-                onTap: () {
-                  context.read<WatchListCubit>().deleteFromWatchList(movie.id);
-                },
+              return GestureDetector(
+                onTap: () => context
+                    .read<WatchListCubit>()
+                    .deleteFromWatchList(movie.id),
                 child: Icon(
                   Icons.bookmark,
                   color: AppColor.white,

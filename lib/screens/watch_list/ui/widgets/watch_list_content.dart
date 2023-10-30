@@ -22,11 +22,11 @@ class WatchListContent extends StatelessWidget {
         (index) {
           return Padding(
             padding: EdgeInsets.only(
-              left: 28.0.w,
-              bottom: 14.0.h,
-              right: 28.0.w,
+              left: 24.0.w,
+              bottom: 24.0.h,
+              right: 24.0.w,
             ),
-            child: InkWell(
+            child: GestureDetector(
               onTap: () {
                 context.goNamed(
                   AppRouter.detail,
@@ -39,9 +39,7 @@ class WatchListContent extends StatelessWidget {
                   },
                 );
               },
-              child: MovieCard(
-                movie: movies[index],
-              ),
+              child: MovieCard(movie: movies[index]),
             ),
           );
         },

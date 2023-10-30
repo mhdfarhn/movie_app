@@ -10,9 +10,7 @@ AppBar homeAppBar() {
     elevation: 0.0,
     titleSpacing: 0.0,
     title: Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 24.0.w,
-      ),
+      padding: EdgeInsets.symmetric(horizontal: 24.0.w),
       child: Text(
         'What do you want to watch?',
         style: AppTextStyle.body1.copyWith(color: AppColor.white),
