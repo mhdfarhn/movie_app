@@ -6,7 +6,6 @@ import 'package:movie_app/core/app_bloc_observer.dart';
 import 'package:movie_app/core/data/services/databases/watch_list_box.dart';
 import 'package:movie_app/screens/detail/blocs/movie_cast/movie_cast_bloc.dart';
 import 'package:movie_app/screens/detail/blocs/movie_detail/movie_detail_bloc.dart';
-import 'package:movie_app/screens/detail/blocs/movie_rating/movie_rating_cubit.dart';
 import 'package:movie_app/screens/detail/blocs/movie_review/movie_review_bloc.dart';
 import 'package:movie_app/screens/detail/blocs/rate_movie/rate_movie_cubit.dart';
 import 'package:movie_app/screens/home/blocs/now_playing_movie/now_playing_movie_cubit.dart';
@@ -60,7 +59,6 @@ class App extends StatelessWidget {
               BlocProvider(
                   create: (context) =>
                       MovieDetailBloc(context.read<TMDBApiService>())),
-              BlocProvider(create: (context) => MovieRatingCubit()),
               BlocProvider(
                   create: (context) =>
                       MovieReviewBloc(context.read<TMDBApiService>())),
@@ -71,7 +69,7 @@ class App extends StatelessWidget {
                   create: (context) =>
                       PopularMovieCubit(context.read<TMDBApiService>())),
               BlocProvider(
-                  create: (context) => RateMovieCubit(
+                  create: (context) => MovieRatingCubit(
                         context.read<TMDBApiService>(),
                         context.read<RatedMoviesBox>(),
                       )),

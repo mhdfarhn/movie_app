@@ -1,17 +1,19 @@
 part of 'rate_movie_cubit.dart';
 
-abstract class RateMovieState extends Equatable {
-  const RateMovieState();
+abstract class MovieRatingState extends Equatable {
+  const MovieRatingState();
 
   @override
   List<Object?> get props => [];
 }
 
-class RateMovieInitial extends RateMovieState {}
+class MovieRatingInitial extends MovieRatingState {}
 
-class RateMovieLoading extends RateMovieState {}
+class MovieRatingLoading extends MovieRatingState {}
 
-class MovieRated extends RateMovieState {
+class MovieNotRated extends MovieRatingState {}
+
+class MovieRated extends MovieRatingState {
   final double rating;
 
   const MovieRated(this.rating);
@@ -20,14 +22,21 @@ class MovieRated extends RateMovieState {
   List<Object?> get props => [rating];
 }
 
-class MovieNotRated extends RateMovieState {}
+class MovieRatingChanged extends MovieRatingState {
+  final double rating;
 
-class RateMovieSuccess extends RateMovieState {}
+  const MovieRatingChanged(this.rating);
 
-class RateMovieError extends RateMovieState {
+  @override
+  List<Object?> get props => [rating];
+}
+
+class MovieRatingSuccess extends MovieRatingState {}
+
+class MovieRatingError extends MovieRatingState {
   final String error;
 
-  const RateMovieError(this.error);
+  const MovieRatingError(this.error);
 
   @override
   List<Object?> get props => [error];

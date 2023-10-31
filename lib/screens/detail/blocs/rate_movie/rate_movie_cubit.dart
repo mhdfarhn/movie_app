@@ -6,17 +6,17 @@ import '../../../../core/data/services/databases/rated_movies_box.dart';
 
 part 'rate_movie_state.dart';
 
-class RateMovieCubit extends Cubit<RateMovieState> {
+class MovieRatingCubit extends Cubit<MovieRatingState> {
   final TMDBApiService _tmDBApiService;
   final RatedMoviesBox _ratedMoviesBox;
 
-  RateMovieCubit(
+  MovieRatingCubit(
     this._tmDBApiService,
     this._ratedMoviesBox,
-  ) : super(RateMovieInitial());
+  ) : super(MovieRatingInitial());
 
   void isMovieRated(int movieId) {
-    emit(RateMovieLoading());
+    emit(MovieRatingLoading());
     if (_ratedMoviesBox.isMovieRated(movieId)) {
       double rating = _ratedMoviesBox.getRating(movieId);
       emit(MovieRated(rating));
@@ -25,14 +25,18 @@ class RateMovieCubit extends Cubit<RateMovieState> {
     }
   }
 
+  void changeMovieRating(double rating) {
+    emit(MovieRatingChanged(rating));
+  }
+
   void rateMovie(int movieId, double rating) {
-    emit(RateMovieLoading());
+    emit(MovieRatingLoading());
     try {
       _tmDBApiService.addRating(movieId.toString(), rating);
       _ratedMoviesBox.addToRatedMovies(movieId, rating);
-      emit(RateMovieSuccess());
+      emit(MovieRatingSuccess());
     } catch (e) {
-      emit(RateMovieError(e.toString()));
+      emit(MovieRatingError(e.toString()));
     }
   }
 }
